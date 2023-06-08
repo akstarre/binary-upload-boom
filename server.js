@@ -55,6 +55,7 @@ app.use(flash());
 
 //Setup Routes For Which The Server Is Listening
 app.use("/", mainRoutes);
+//Directs /post requests to ("./routes/posts")
 app.use("/post", postRoutes);
 
 //Server Running

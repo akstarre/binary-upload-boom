@@ -2,9 +2,12 @@
   <div class="container">
     <div class="row justify-content-center mt-5">
       <ul class="row list-unstyled">
+        <!-- For loop to create images wrapped in an anchor route for each post in the database -->
         <% for(var i=0; i<posts.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
+            <!-- this posts id in the link -->
             <a href="/post/<%= posts[i]._id%>">
+              <!-- this posts image posted on the page -->
               <img class="img-fluid" src="<%= posts[i].image%>">
             </a>
           </li>
@@ -12,4 +15,4 @@
         </ul>
     </div>
   </div>  
-<%- include('partials/footer') -%>
+<%- include('partials/footer') -%> 

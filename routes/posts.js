@@ -5,6 +5,7 @@ const postsController = require("../controllers/posts");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Post Routes - simplified for now
+//Ensure's authentication, uses id in URL to retrieve information relevant to the post.
 router.get("/:id", ensureAuth, postsController.getPost);
 
 router.post("/createPost", upload.single("file"), postsController.createPost);

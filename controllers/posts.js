@@ -10,17 +10,21 @@ module.exports = {
       console.log(err);
     }
   },
+  //finds all posts, sorts in descending order or created date. Renders these posts as posts in feed.ejs 
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean();
+      // Renders these posts as posts in feed.ejs 
       res.render("feed.ejs", { posts: posts });
     } catch (err) {
       console.log(err);
     }
   },
+  //URL with id at the end comes through router, router defines the parameter with :id, req.params.id represents that id so that post awaits a request to search the data base of that id. 
   getPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
+      //render method which takes view location as first param, and key:value of "what you're sending": "what you're calling it"
       res.render("post.ejs", { post: post, user: req.user });
     } catch (err) {
       console.log(err);
