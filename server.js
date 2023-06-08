@@ -34,6 +34,7 @@ app.use(express.json());
 app.use(logger("dev"));
 
 //Use forms for put / delete
+//looks for posts requests coming in, if end of url has _method, it will override the requests to represent what _method= 'given'
 app.use(methodOverride("_method"));
 
 // Setup Sessions - stored in MongoDB

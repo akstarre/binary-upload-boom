@@ -37,7 +37,9 @@ module.exports = {
 
       await Post.create({
         title: req.body.title,
+        //url returned from the awaited request above
         image: result.secure_url,
+        //stored from that request incase we need to access the image in cloudinary, in this instance for deletion.
         cloudinaryId: result.public_id,
         caption: req.body.caption,
         likes: 0,
@@ -49,6 +51,7 @@ module.exports = {
       console.log(err);
     }
   },
+  //find post with the :id passed through url, increment 'likes' value by 1
   likePost: async (req, res) => {
     try {
       await Post.findOneAndUpdate(
@@ -63,6 +66,7 @@ module.exports = {
       console.log(err);
     }
   },
+  
   deletePost: async (req, res) => {
     try {
       // Find post by id

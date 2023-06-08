@@ -5,6 +5,7 @@
       <h2><%= post.title %></h2>
       <img class="img-fluid" src="<%= post.image%>" />
       <div class="row justify-content-between">
+        <!-- Like button, when clicked overrides post requst with PUT.  -->
         <form
           class="col-1"
           action="/post/likePost/<%= post.id %>?_method=PUT"
@@ -15,6 +16,7 @@
         <!-- post object is sent to be rendered from getPost in posts controller -->
         <h3 class="col-3">Likes: <%= post.likes %></h3>
         <%if(post.user == user.id){ %>
+          <!-- Delete button that inservs the posts id into the the endpoint, when clicked overides post method with delete method , sends request through server to post routes. -->
         <form
           action="/post/deletePost/<%= post.id %>?_method=DELETE"
           method="POST"
