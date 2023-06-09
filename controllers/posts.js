@@ -1,5 +1,6 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
+const Comment = require("../models/Comments");
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -23,9 +24,9 @@ module.exports = {
   //URL with id at the end comes through router, router defines the parameter with :id, req.params.id represents that id so that post awaits a request to search the data base of that id. 
   getPost: async (req, res) => {
     try {
-      const post = await Post.findById(req.params.id);
-      //render method which takes view location as first param, and key:value of "what you're sending": "what you're calling it"
-      res.render("post.ejs", { post: post, user: req.user });
+      const post = await Post.findById(req.params.id).lean();
+      const comments = await Comment.find({post: req.params.id}).sort({ createdAt: "desc"}).lean()
+      res.render("post.ejs", { post: post, user: req.user, comments: comments });
     } catch (err) {
       console.log(err);
     }
